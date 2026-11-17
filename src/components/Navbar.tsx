@@ -11,8 +11,8 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
-        active ? "bg-indigo-50 text-indigo-700" : "text-slate-600 hover:text-slate-900"
+      className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
+        active ? "bg-accent-soft text-accent" : "text-muted hover:text-ink"
       }`}
     >
       {children}
@@ -25,12 +25,12 @@ export default function Navbar() {
   const user = session?.user;
 
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-line bg-surface">
       <nav
         aria-label="Main"
-        className="mx-auto flex max-w-5xl flex-wrap items-center gap-2 px-4 py-3"
+        className="mx-auto flex max-w-4xl flex-wrap items-center gap-2 px-4 py-3"
       >
-        <Link href="/" className="mr-4 text-lg font-bold text-indigo-700">
+        <Link href="/" className="font-display mr-4 text-xl font-bold text-ink">
           Workshop Hub
         </Link>
         <NavLink href="/">Workshops</NavLink>
@@ -40,9 +40,9 @@ export default function Navbar() {
         <div className="ml-auto flex items-center gap-2">
           {status === "loading" ? null : user ? (
             <>
-              <span className="hidden text-sm text-slate-600 sm:inline">
+              <span className="hidden text-sm text-muted sm:inline">
                 {user.name}
-                <span className="ml-2 rounded-full bg-slate-100 px-2 py-0.5 text-xs uppercase text-slate-600">
+                <span className="ml-2 rounded-md bg-canvas px-2 py-0.5 text-xs font-semibold uppercase text-muted">
                   {user.role}
                 </span>
               </span>

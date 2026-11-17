@@ -1,4 +1,4 @@
-import { formatDate, isPast, toDateInput, todayUtc } from "@/lib/format";
+import { dateParts, formatDate, isPast, monthLabel, toDateInput, todayUtc } from "@/lib/format";
 
 describe("format helpers", () => {
   it("formats an ISO date in UTC", () => {
@@ -7,6 +7,11 @@ describe("format helpers", () => {
 
   it("returns the raw value for an invalid date", () => {
     expect(formatDate("not-a-date")).toBe("not-a-date");
+  });
+
+  it("splits a date into the parts shown on the date tile", () => {
+    expect(dateParts("2026-12-05T00:00:00.000Z")).toEqual({ day: "5", month: "Dec", weekday: "Sat" });
+    expect(monthLabel("2026-12-05T00:00:00.000Z")).toBe("December 2026");
   });
 
   it("cuts an ISO string down to a date input value", () => {

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import RegisterButton from "@/components/RegisterButton";
 import { ApiError, workshopApi } from "@/lib/api";
+import DateTile from "@/components/DateTile";
 import { formatDate, isPast } from "@/lib/format";
 import type { Workshop } from "@/types";
 
@@ -24,31 +25,34 @@ export default async function WorkshopDetail({
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      <Link href="/" className="text-sm text-indigo-700 hover:underline">
+      <Link href="/" className="inline-flex min-h-11 items-center text-sm font-semibold text-accent hover:underline">
         ← All workshops
       </Link>
       <article className="card space-y-5">
-        <header className="space-y-1">
-          <h1 className="text-2xl font-bold">{workshop.name}</h1>
-          <p className="text-sm text-slate-500">Taught by {workshop.instructor}</p>
+        <header className="flex gap-4">
+          <DateTile iso={workshop.workshopDate} muted={past} />
+          <div className="min-w-0 space-y-1">
+            <h1 className="text-3xl font-bold leading-tight">{workshop.name}</h1>
+            <p className="text-muted">Taught by {workshop.instructor}</p>
+          </div>
         </header>
-        <p className="whitespace-pre-line text-slate-700">{workshop.description}</p>
-        <dl className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-3">
-          <div>
-            <dt className="font-medium text-slate-700">Date</dt>
-            <dd className="text-slate-600">{formatDate(workshop.workshopDate)}</dd>
+        <p className="whitespace-pre-line text-lg text-ink">{workshop.description}</p>
+        <dl className="grid grid-cols-1 divide-y divide-line border-y border-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <div className="py-3 sm:px-4 sm:first:pl-0">
+            <dt className="text-sm text-muted">Date</dt>
+            <dd className="font-semibold">{formatDate(workshop.workshopDate)}</dd>
           </div>
-          <div>
-            <dt className="font-medium text-slate-700">Location</dt>
-            <dd className="text-slate-600">{workshop.location}</dd>
+          <div className="py-3 sm:px-4">
+            <dt className="text-sm text-muted">Location</dt>
+            <dd className="font-semibold">{workshop.location}</dd>
           </div>
-          <div>
-            <dt className="font-medium text-slate-700">Capacity</dt>
-            <dd className="text-slate-600">{workshop.capacity} seats</dd>
+          <div className="py-3 sm:px-4">
+            <dt className="text-sm text-muted">Capacity</dt>
+            <dd className="font-semibold">{workshop.capacity} seats</dd>
           </div>
         </dl>
         {past ? (
-          <p className="rounded-lg bg-slate-100 p-3 text-sm text-slate-600">
+          <p className="rounded-lg bg-canvas p-3 text-muted">
             This workshop has already taken place, so registration is closed.
           </p>
         ) : (

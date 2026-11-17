@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Bricolage_Grotesque, Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 
-const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const body = Geist({ variable: "--font-body", subsets: ["latin"] });
+const heading = Bricolage_Grotesque({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Workshop Hub",
@@ -13,12 +18,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={geist.variable}>
+    <html lang="en" className={`${body.variable} ${heading.variable}`}>
       <body className="min-h-screen antialiased">
         <Providers>
           <Navbar />
-          <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
-          <footer className="mx-auto max-w-5xl px-4 pb-10 text-center text-xs text-slate-500">
+          <main className="mx-auto max-w-4xl px-4 py-8">{children}</main>
+          <footer className="mx-auto max-w-4xl px-4 pb-10 text-center text-sm text-muted">
             Workshop Hub · Software Development Practice II
           </footer>
         </Providers>

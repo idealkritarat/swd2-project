@@ -1,6 +1,24 @@
 import SearchBar from "@/components/SearchBar";
 import WorkshopCard from "@/components/WorkshopCard";
 import { workshopApi } from "@/lib/api";
+import { isPast, monthLabel } from "@/lib/format";
+import type { Workshop } from "@/types";
+
+function groupByMonth(workshops: Workshop[]): { label: string; items: Workshop[] }[] {
+  const byDate = (a: Workshop, b: Workshop) => a.workshopDate.localeCompare(b.workshopDate);
+  const upcoming = workshops.filter((w) => !isPast(w.workshopDate)).sort(byDate);
+  const ended = workshops.filter((w) => isPast(w.workshopDate)).sort((a, b) => byDate(b, a));
+
+  const groups: { label: string; items: Workshop[] }[] = [];
+  for (const w of upcoming) {
+    const label = monthLabel(w.workshopDate);
+    const last = groups[groups.length - 1];
+    if (last && last.label === label) last.items.push(w);
+    else groups.push({ label, items: [w] });
+  }
+  if (ended.length > 0) groups.push({ label: "Ended", items: ended });
+  return groups;
+}
 
 export default async function Home({
   searchParams,
@@ -9,38 +27,46 @@ export default async function Home({
 }) {
   const { search } = await searchParams;
   const { data: workshops } = await workshopApi.list(search);
+  const groups = groupByMonth(workshops);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <section className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Find your next workshop</h1>
-        <p className="text-slate-600">
-          Browse upcoming workshops, then log in to register for up to three at a time.
+        <h1 className="text-4xl font-bold tracking-tight">Workshops</h1>
+        <p className="text-muted">
+          Pick a date, log in, and register. You can hold up to three active registrations.
         </p>
       </section>
 
       <SearchBar initial={search ?? ""} />
 
       {search && (
-        <p className="text-sm text-slate-600" aria-live="polite">
+        <p className="text-muted" aria-live="polite">
           {workshops.length} result{workshops.length === 1 ? "" : "s"} for “{search}”
         </p>
       )}
 
       {workshops.length === 0 ? (
-        <div className="card text-center text-slate-600">
+        <div className="card text-center text-muted">
           {search ? "No workshops match your search." : "No workshops are available yet."}
         </div>
       ) : (
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {workshops.map((w) => (
-            <li key={w._id} className="flex">
-              <div className="flex w-full">
-                <WorkshopCard workshop={w} />
-              </div>
-            </li>
+        <div className="space-y-8">
+          {groups.map((g) => (
+            <section key={g.label} aria-labelledby={`m-${g.label}`} className="space-y-3">
+              <h2 id={`m-${g.label}`} className="text-sm font-semibold uppercase tracking-wide text-muted">
+                {g.label}
+              </h2>
+              <ul className="space-y-3">
+                {g.items.map((w) => (
+                  <li key={w._id}>
+                    <WorkshopCard workshop={w} />
+                  </li>
+                ))}
+              </ul>
+            </section>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

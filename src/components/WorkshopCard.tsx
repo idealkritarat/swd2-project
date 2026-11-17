@@ -1,41 +1,31 @@
 import Link from "next/link";
 import type { Workshop } from "@/types";
 import { formatDate, isPast } from "@/lib/format";
+import DateTile from "@/components/DateTile";
 
 export default function WorkshopCard({ workshop }: { workshop: Workshop }) {
   const past = isPast(workshop.workshopDate);
   return (
-    <article className="card flex flex-col gap-3">
-      <div className="flex items-start justify-between gap-2">
-        <h3 className="text-lg font-semibold text-slate-900">{workshop.name}</h3>
-        <span
-          className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-            past ? "bg-slate-100 text-slate-500" : "bg-emerald-50 text-emerald-700"
-          }`}
-        >
-          {past ? "Ended" : "Open"}
-        </span>
+    <article className="card flex flex-col gap-4 sm:flex-row sm:items-center">
+      <div className="flex min-w-0 flex-1 gap-4">
+        <DateTile iso={workshop.workshopDate} muted={past} />
+        <div className="min-w-0 space-y-1">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <h3 className="font-display text-lg font-semibold leading-snug">{workshop.name}</h3>
+            {past && (
+              <span className="rounded-md bg-canvas px-2 py-0.5 text-sm font-medium text-muted">
+                Ended
+              </span>
+            )}
+          </div>
+          <p className="line-clamp-2 text-muted">{workshop.description}</p>
+          <p className="text-sm text-muted">
+            <span className="sr-only">{formatDate(workshop.workshopDate)}. </span>
+            {workshop.instructor} · {workshop.location} · {workshop.capacity} seats
+          </p>
+        </div>
       </div>
-      <p className="line-clamp-2 text-sm text-slate-600">{workshop.description}</p>
-      <dl className="grid grid-cols-2 gap-2 text-xs text-slate-500">
-        <div>
-          <dt className="font-medium text-slate-700">Date</dt>
-          <dd>{formatDate(workshop.workshopDate)}</dd>
-        </div>
-        <div>
-          <dt className="font-medium text-slate-700">Seats</dt>
-          <dd>{workshop.capacity}</dd>
-        </div>
-        <div>
-          <dt className="font-medium text-slate-700">Instructor</dt>
-          <dd>{workshop.instructor}</dd>
-        </div>
-        <div>
-          <dt className="font-medium text-slate-700">Location</dt>
-          <dd>{workshop.location}</dd>
-        </div>
-      </dl>
-      <Link href={`/workshops/${workshop._id}`} className="btn-secondary mt-auto">
+      <Link href={`/workshops/${workshop._id}`} className="btn-secondary sm:shrink-0">
         View details
       </Link>
     </article>

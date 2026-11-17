@@ -35,7 +35,7 @@ function LoginForm() {
     <form onSubmit={onSubmit} className="card mx-auto max-w-md space-y-4" noValidate>
       <h1 className="text-2xl font-bold">Log in</h1>
       {error && (
-        <p role="alert" className="rounded-lg bg-rose-50 p-3 text-sm text-rose-700">
+        <p role="alert" className="rounded-lg bg-danger-soft p-3 text-sm text-danger">
           {error}
         </p>
       )}
@@ -61,9 +61,9 @@ function LoginForm() {
       <button type="submit" className="btn-primary w-full" disabled={loading}>
         {loading ? "Logging in…" : "Log in"}
       </button>
-      <p className="text-center text-sm text-slate-600">
+      <p className="text-center text-sm text-muted">
         New here?{" "}
-        <Link href="/register" className="text-indigo-700 hover:underline">
+        <Link href="/register" className="text-accent hover:underline">
           Create an account
         </Link>
       </p>

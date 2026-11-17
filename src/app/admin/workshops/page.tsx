@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { ApiError, workshopApi } from "@/lib/api";
-import { formatDate, toDateInput, todayUtc } from "@/lib/format";
+import DateTile from "@/components/DateTile";
+import { formatDate, isPast, toDateInput, todayUtc } from "@/lib/format";
 import type { Workshop, WorkshopInput } from "@/types";
 
 const empty: WorkshopInput = {
@@ -49,7 +50,7 @@ export default function AdminWorkshopsPage() {
     return (
       <div className="card mx-auto max-w-md space-y-3 text-center">
         <h1 className="text-xl font-semibold">Admins only</h1>
-        <p className="text-sm text-slate-600">You need an admin account to manage workshops.</p>
+        <p className="text-sm text-muted">You need an admin account to manage workshops.</p>
         <Link href="/" className="btn-primary">
           Back to workshops
         </Link>
@@ -103,7 +104,7 @@ export default function AdminWorkshopsPage() {
       <h1 className="text-2xl font-bold">Manage workshops</h1>
 
       {error && (
-        <p role="alert" className="rounded-lg bg-rose-50 p-3 text-sm text-rose-700">
+        <p role="alert" className="rounded-lg bg-danger-soft p-3 text-sm text-danger">
           {error}
         </p>
       )}
@@ -207,16 +208,20 @@ export default function AdminWorkshopsPage() {
           Existing workshops ({workshops.length})
         </h2>
         {workshops.length === 0 ? (
-          <p className="card text-center text-slate-600">No workshops yet. Add the first one above.</p>
+          <p className="card text-center text-muted">No workshops yet. Add the first one above.</p>
         ) : (
           <ul className="space-y-3">
             {workshops.map((w) => (
               <li key={w._id} className="card flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <p className="font-medium">{w.name}</p>
-                  <p className="text-sm text-slate-600">
-                    {formatDate(w.workshopDate)} · {w.location} · {w.capacity} seats
-                  </p>
+                <div className="flex min-w-0 flex-1 gap-4">
+                  <DateTile iso={w.workshopDate} muted={isPast(w.workshopDate)} />
+                  <div className="min-w-0">
+                    <p className="font-display text-lg font-semibold leading-snug">{w.name}</p>
+                    <p className="text-sm text-muted">
+                      <span className="sr-only">{formatDate(w.workshopDate)}. </span>
+                      {w.location} · {w.capacity} seats
+                    </p>
+                  </div>
                 </div>
                 <div className="flex gap-2">
                   <button

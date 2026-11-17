@@ -1,37 +1,84 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --canvas: #f3f5f7;
+  --surface: #ffffff;
+  --ink: #12202b;
+  --muted: #52606d;
+  --line: #dce2e8;
+  --accent: #0b6e6e;
+  --on-accent: #ffffff;
+  --accent-text: #0b6e6e;
+  --accent-soft: #e1f1f0;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  --ok: #146c43;
+  --ok-soft: #e6f4ec;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #0e1419;
+    --surface: #161e26;
+    --ink: #e7edf2;
+    --muted: #9aa8b4;
+    --line: #2a3641;
+    --accent: #34b3aa;
+    --on-accent: #04201f;
+    --accent-text: #5cd0c8;
+    --accent-soft: #12302f;
+    --danger: #ff9c94;
+    --danger-soft: #3a1a18;
+    --ok: #7fd6a6;
+    --ok-soft: #12301f;
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent-text);
+  --color-accent-fill: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --font-sans: var(--font-body), system-ui, sans-serif;
+  --font-display: var(--font-heading), var(--font-body), system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--canvas);
+  color: var(--ink);
   font-family: var(--font-sans);
 }
 
+h1,
+h2,
+.font-display {
+  font-family: var(--font-display);
+}
+
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:cursor-not-allowed disabled:opacity-50;
 }
 @utility btn-primary {
-  @apply btn bg-indigo-600 text-white hover:bg-indigo-700;
+  @apply btn bg-accent-fill text-on-accent hover:brightness-110;
 }
 @utility btn-secondary {
-  @apply btn border border-slate-300 bg-white text-slate-700 hover:bg-slate-50;
+  @apply btn border border-line bg-surface text-ink hover:bg-canvas;
 }
 @utility btn-danger {
-  @apply btn bg-rose-600 text-white hover:bg-rose-700;
+  @apply btn bg-danger-soft text-danger hover:brightness-95;
 }
 @utility input {
-  @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200;
+  @apply min-h-11 w-full rounded-lg border border-line bg-surface px-3 py-2 text-base text-ink placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30;
 }
 @utility card {
-  @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm;
+  @apply rounded-xl border border-line bg-surface p-5;
 }

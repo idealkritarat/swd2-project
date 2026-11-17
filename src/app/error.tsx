@@ -10,7 +10,7 @@ export default function ErrorPage({
   return (
     <div className="card mx-auto max-w-md space-y-3 text-center" role="alert">
       <h1 className="text-xl font-semibold">Something went wrong</h1>
-      <p className="text-sm text-slate-600">
+      <p className="text-sm text-muted">
         {error.message || "We could not load this page."}
       </p>
       <button className="btn-primary" onClick={reset}>

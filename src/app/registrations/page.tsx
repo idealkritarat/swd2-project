@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { ApiError, registrationApi, workshopApi } from "@/lib/api";
+import DateTile from "@/components/DateTile";
 import { formatDate, isPast } from "@/lib/format";
 import type { Registration, UserSummary, Workshop } from "@/types";
 
@@ -81,7 +82,7 @@ export default function RegistrationsPage() {
         <h1 className="text-2xl font-bold">
           {isAdmin ? "All registrations" : "My registrations"}
         </h1>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm text-muted">
           {isAdmin
             ? "As an admin you can move or cancel any member's registration."
             : "You can hold up to 3 active registrations at once."}
@@ -89,13 +90,13 @@ export default function RegistrationsPage() {
       </header>
 
       {error && (
-        <p role="alert" className="rounded-lg bg-rose-50 p-3 text-sm text-rose-700">
+        <p role="alert" className="rounded-lg bg-danger-soft p-3 text-sm text-danger">
           {error}
         </p>
       )}
 
       {items.length === 0 ? (
-        <div className="card space-y-3 text-center text-slate-600">
+        <div className="card space-y-3 text-center text-muted">
           <p>No registrations yet.</p>
           <Link href="/" className="btn-primary">
             Browse workshops
@@ -109,29 +110,33 @@ export default function RegistrationsPage() {
             const past = w ? isPast(w.workshopDate) : false;
             return (
               <li key={r._id} className="card space-y-3">
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div>
-                    <h2 className="font-semibold">{w?.name ?? "Removed workshop"}</h2>
+                <div className="flex gap-4">
+                  {w && <DateTile iso={w.workshopDate} muted={past || !w.isActive} />}
+                  <div className="min-w-0 flex-1 space-y-1">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <h2 className="font-display text-lg font-semibold leading-snug">
+                        {w?.name ?? "Removed workshop"}
+                      </h2>
+                      <span
+                        className={`rounded-md px-2 py-0.5 text-sm font-medium ${
+                          past || !w?.isActive ? "bg-canvas text-muted" : "bg-ok-soft text-ok"
+                        }`}
+                      >
+                        {past || !w?.isActive ? "History" : "Active"}
+                      </span>
+                    </div>
                     {w && (
-                      <p className="text-sm text-slate-600">
-                        {formatDate(w.workshopDate)} · {w.location} · {w.instructor}
+                      <p className="text-sm text-muted">
+                        <span className="sr-only">{formatDate(w.workshopDate)}. </span>
+                        {w.instructor} · {w.location}
                       </p>
                     )}
                     {isAdmin && u && (
-                      <p className="text-xs text-slate-500">
+                      <p className="text-sm text-muted">
                         {u.name} ({u.email})
                       </p>
                     )}
                   </div>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      past || !w?.isActive
-                        ? "bg-slate-100 text-slate-500"
-                        : "bg-emerald-50 text-emerald-700"
-                    }`}
-                  >
-                    {past || !w?.isActive ? "History" : "Active"}
-                  </span>
                 </div>
 
                 {editing === r._id ? (

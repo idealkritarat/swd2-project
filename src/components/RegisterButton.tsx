@@ -17,7 +17,7 @@ export default function RegisterButton({ workshopId }: { workshopId: string }) {
 
   if (!session) {
     return (
-      <p className="rounded-lg bg-indigo-50 p-3 text-sm text-indigo-800">
+      <p className="rounded-lg bg-accent-soft p-3 text-sm text-accent">
         <Link href={`/login?callbackUrl=/workshops/${workshopId}`} className="font-medium underline">
           Log in
         </Link>{" "}
@@ -28,7 +28,7 @@ export default function RegisterButton({ workshopId }: { workshopId: string }) {
 
   if (session.user.role === "admin") {
     return (
-      <p className="rounded-lg bg-slate-100 p-3 text-sm text-slate-600">
+      <p className="rounded-lg bg-canvas p-3 text-sm text-muted">
         Admins manage workshops and cannot register for them.
       </p>
     );
@@ -50,7 +50,7 @@ export default function RegisterButton({ workshopId }: { workshopId: string }) {
 
   if (done) {
     return (
-      <p role="status" className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">
+      <p role="status" className="rounded-lg bg-ok-soft p-3 text-sm text-ok">
         You are registered.{" "}
         <Link href="/registrations" className="font-medium underline">
           View my registrations
@@ -62,7 +62,7 @@ export default function RegisterButton({ workshopId }: { workshopId: string }) {
   return (
     <div className="space-y-3">
       {error && (
-        <p role="alert" className="rounded-lg bg-rose-50 p-3 text-sm text-rose-700">
+        <p role="alert" className="rounded-lg bg-danger-soft p-3 text-sm text-danger">
           {error}
         </p>
       )}

@@ -55,7 +55,7 @@ export default function RegisterPage() {
     <form onSubmit={onSubmit} className="card mx-auto max-w-md space-y-4" noValidate>
       <h1 className="text-2xl font-bold">Create an account</h1>
       {error && (
-        <p role="alert" className="rounded-lg bg-rose-50 p-3 text-sm text-rose-700">
+        <p role="alert" className="rounded-lg bg-danger-soft p-3 text-sm text-danger">
           {error}
         </p>
       )}
@@ -76,9 +76,9 @@ export default function RegisterPage() {
       <button type="submit" className="btn-primary w-full" disabled={loading}>
         {loading ? "Creating account…" : "Sign up"}
       </button>
-      <p className="text-center text-sm text-slate-600">
+      <p className="text-center text-sm text-muted">
         Already registered?{" "}
-        <Link href="/login" className="text-indigo-700 hover:underline">
+        <Link href="/login" className="text-accent hover:underline">
           Log in
         </Link>
       </p>

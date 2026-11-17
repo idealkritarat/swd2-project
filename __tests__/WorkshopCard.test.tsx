@@ -17,7 +17,7 @@ describe("WorkshopCard", () => {
   it("shows the workshop and links to its detail page", () => {
     render(<WorkshopCard workshop={base} />);
     expect(screen.getByRole("heading", { name: "React Basics" })).toBeInTheDocument();
-    expect(screen.getByText("Open")).toBeInTheDocument();
+    expect(screen.queryByText("Ended")).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: /view details/i })).toHaveAttribute(
       "href",
       "/workshops/w1",
