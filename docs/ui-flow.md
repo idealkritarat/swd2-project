@@ -1,7 +1,6 @@
 # UI flow design
 
-The flow was drawn in FigJam: [Workshop Hub UI Flow](https://www.figma.com/board/TRanVeLfSBu3qw5tIWRsZA). The screenshots below are from the finished app.
-
+The flow was drawn in FigJam: [Workshop Hub UI Flow](https://www.figma.com/board/TRanVeLfSBu3qw5tIWRsZA).
 ![UI flow](images/ui-flow.png)
 
 ## Pages
@@ -46,7 +45,7 @@ flowchart TD
 
 1. **Catalog**: search bar, result count, cards with date, seats, instructor and location, an Open or Ended badge.
 2. **Workshop details**: full description, facts, one clear action depending on role.
-3. **Login and Sign up**: inline validation (phone, password length, matching passwords), errors in an alert region.
+3. **Login and Sign up**: inline validation (phone, password length, matching passwords), errors in an alert region. Sign up always creates a member. Admin accounts are made in advance, as the teacher said on Discord.
 4. **My registrations**: card per registration, Active or History badge, "Change workshop" opens an inline selector, "Cancel registration" asks to confirm.
 5. **Admin workshops**: one form used for both add and edit, a list below with Edit and Delete.
 
@@ -54,13 +53,3 @@ flowchart TD
 
 Loading skeletons, empty lists, backend errors, network errors, not found, forbidden (non-admin on the admin page), expired or missing session (redirect to login with a return URL).
 
-## Screenshots
-
-| | |
-|---|---|
-| ![Catalog](images/01-catalog.png) Catalog | ![Search](images/02-search.png) Search |
-| ![Sign up](images/03-signup.png) Sign up | ![Log in](images/04-login.png) Log in |
-| ![Details](images/05-details-visitor.png) Details as a visitor | ![Registered](images/07-registered.png) Registered |
-| ![Full](images/08-full-error.png) Workshop full | ![My registrations](images/09-my-registrations.png) My registrations |
-| ![Change](images/10-change.png) Change workshop | ![Admin](images/11-admin.png) Admin workshops |
-| ![All registrations](images/12-admin-registrations.png) Admin sees all registrations | |

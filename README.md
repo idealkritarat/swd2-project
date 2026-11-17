@@ -13,7 +13,7 @@ Admins manage workshops and any member's registrations.
 
 | Requirement | Where |
 |---|---|
-| Register, log in, log out, two roles (admin, member) | `/register`, `/login`, navbar, NextAuth credentials provider |
+| Register as a member, log in, log out, two roles (admin accounts are created in advance, not through the sign up page) | `/register`, `/login`, navbar, NextAuth credentials provider |
 | Anyone can view workshops | `/` and `/workshops/[id]` |
 | Search by name, description, instructor or location | search bar on `/`, calls `GET /workshops?search=` |
 | Admin adds, edits, deletes workshops | `/admin/workshops` |

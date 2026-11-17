@@ -13,8 +13,8 @@ Run everything with `npm test`. Tests use Jest, jsdom and Testing Library, with 
 
 ## Manual checklist
 
-1. Sign up as admin, add three workshops.
-2. Sign up as member, search, open a workshop, register.
+1. Log in as the admin that was created in advance, add three workshops.
+2. Sign up as a new member, search, open a workshop, register.
 3. Register for a fourth workshop: expect the limit message.
 4. Register twice for one workshop: expect the duplicate message.
 5. Change a registration to another workshop, then cancel it.
