@@ -4,8 +4,9 @@ Frontend for the **Workshop Registration System** (Project 3, Software Developme
 Visitors can browse and search workshops. Members register for them and manage their own registrations.
 Admins manage workshops and any member's registrations.
 
-- Live demo: _added after the Vercel deploy_
-- Backend: [SWDevPrac2-69-1/PJ03-WorkshopRegist](https://github.com/SWDevPrac2-69-1/PJ03-WorkshopRegist)
+- Live demo: [swd2-project.vercel.app](https://swd2-project.vercel.app)
+- Backend: [SWDevPrac2-69-1/PJ03-WorkshopRegist](https://github.com/SWDevPrac2-69-1/PJ03-WorkshopRegist), deployed from our copy [idealkritarat/swd2-project-api](https://github.com/idealkritarat/swd2-project-api) at https://swd2-project-api.vercel.app (API docs at `/api-docs`)
+- UI flow design: [FigJam board](https://www.figma.com/board/TRanVeLfSBu3qw5tIWRsZA)
 - Team Yoyo: Kritarat Moonmanee ([@idealkritarat](https://github.com/idealkritarat)) and Piranat Wadlom ([@piranatw](https://github.com/piranatw))
 
 ## Features
@@ -63,7 +64,7 @@ src/
   types/          shared TypeScript types
   proxy.ts        protects /registrations and /admin
 __tests__/        unit and component tests
-docs/             UI flow, work split, API integration, testing
+docs/             UI flow, work split, API integration, testing, deployment
 ```
 
 ## Documentation
@@ -72,3 +73,4 @@ docs/             UI flow, work split, API integration, testing
 - [Work split](docs/work-split.md)
 - [API integration](docs/api-integration.md)
 - [Testing](docs/testing.md)
+- [Deployment](docs/deployment.md)

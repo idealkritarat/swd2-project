@@ -1,5 +1,9 @@
 # UI flow design
 
+The flow was drawn in FigJam: [Workshop Hub UI Flow](https://www.figma.com/board/TRanVeLfSBu3qw5tIWRsZA). The screenshots below are from the finished app.
+
+![UI flow](images/ui-flow.png)
+
 ## Pages
 
 | Page | Who can open it | Purpose |
@@ -49,3 +53,14 @@ flowchart TD
 ## States covered
 
 Loading skeletons, empty lists, backend errors, network errors, not found, forbidden (non-admin on the admin page), expired or missing session (redirect to login with a return URL).
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Catalog](images/01-catalog.png) Catalog | ![Search](images/02-search.png) Search |
+| ![Sign up](images/03-signup.png) Sign up | ![Log in](images/04-login.png) Log in |
+| ![Details](images/05-details-visitor.png) Details as a visitor | ![Registered](images/07-registered.png) Registered |
+| ![Full](images/08-full-error.png) Workshop full | ![My registrations](images/09-my-registrations.png) My registrations |
+| ![Change](images/10-change.png) Change workshop | ![Admin](images/11-admin.png) Admin workshops |
+| ![All registrations](images/12-admin-registrations.png) Admin sees all registrations | |
