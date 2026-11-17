@@ -24,7 +24,7 @@ export default async function WorkshopDetail({
   const past = isPast(workshop.workshopDate);
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="space-y-6">
       <Link href="/" className="inline-flex min-h-11 items-center text-sm font-semibold text-accent hover:underline">
         ← All workshops
       </Link>
@@ -32,7 +32,7 @@ export default async function WorkshopDetail({
         <header className="flex gap-4">
           <DateTile iso={workshop.workshopDate} muted={past} />
           <div className="min-w-0 space-y-1">
-            <h1 className="text-3xl font-bold leading-tight">{workshop.name}</h1>
+            <h1 className="font-display text-3xl font-bold leading-tight">{workshop.name}</h1>
             <p className="text-muted">Taught by {workshop.instructor}</p>
           </div>
         </header>

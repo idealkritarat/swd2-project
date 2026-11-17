@@ -33,7 +33,7 @@ function LoginForm() {
 
   return (
     <form onSubmit={onSubmit} className="card mx-auto max-w-md space-y-4" noValidate>
-      <h1 className="text-2xl font-bold">Log in</h1>
+      <h1 className="font-display text-2xl font-bold">Log in</h1>
       {error && (
         <p role="alert" className="rounded-lg bg-danger-soft p-3 text-sm text-danger">
           {error}

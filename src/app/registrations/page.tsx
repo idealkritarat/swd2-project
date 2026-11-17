@@ -79,7 +79,7 @@ export default function RegistrationsPage() {
   return (
     <div className="space-y-6">
       <header className="space-y-1">
-        <h1 className="text-2xl font-bold">
+        <h1 className="font-display text-3xl font-bold tracking-tight">
           {isAdmin ? "All registrations" : "My registrations"}
         </h1>
         <p className="text-sm text-muted">

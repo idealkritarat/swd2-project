@@ -21,7 +21,7 @@ Admins manage workshops and any member's registrations.
 | Member views, changes, cancels own registration; admin does it for anyone | `/registrations` |
 | Rules (capacity, one per workshop, max 3 active, no past dates) | enforced by the backend, shown to the user with the backend's own message; the UI also hides registration for past workshops and blocks past dates in the admin form |
 
-Extras: route protection with middleware, role-aware navigation, loading, error and not-found screens, form validation, keyboard and screen reader support (labels, `aria-live`, `role=alert`), responsive layout, and 19 automated tests.
+Extras: route protection with middleware, role-aware navigation, loading, error and not-found screens, form validation, keyboard and screen reader support (labels, `aria-live`, `role=alert`), responsive layout, and 20 automated tests.
 
 ## Tech stack
 

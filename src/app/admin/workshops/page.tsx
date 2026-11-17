@@ -49,7 +49,7 @@ export default function AdminWorkshopsPage() {
   if (session?.user.role !== "admin") {
     return (
       <div className="card mx-auto max-w-md space-y-3 text-center">
-        <h1 className="text-xl font-semibold">Admins only</h1>
+        <h1 className="font-display text-xl font-semibold">Admins only</h1>
         <p className="text-sm text-muted">You need an admin account to manage workshops.</p>
         <Link href="/" className="btn-primary">
           Back to workshops
@@ -101,7 +101,7 @@ export default function AdminWorkshopsPage() {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-2xl font-bold">Manage workshops</h1>
+      <h1 className="font-display text-3xl font-bold tracking-tight">Manage workshops</h1>
 
       {error && (
         <p role="alert" className="rounded-lg bg-danger-soft p-3 text-sm text-danger">

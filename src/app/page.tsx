@@ -32,7 +32,7 @@ export default async function Home({
   return (
     <div className="space-y-8">
       <section className="space-y-2">
-        <h1 className="text-4xl font-bold tracking-tight">Workshops</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Workshops</h1>
         <p className="text-muted">
           Pick a date, log in, and register. You can hold up to three active registrations.
         </p>
