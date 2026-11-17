@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { ApiError, authApi } from "@/lib/api";
-import type { Role } from "@/types";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -40,7 +39,7 @@ export default function RegisterPage() {
         email,
         tel,
         password,
-        role: String(form.get("role")) as Role,
+        role: "member",
       });
       await signIn("credentials", { email, password, redirect: false });
       router.push("/");
@@ -74,15 +73,6 @@ export default function RegisterPage() {
           <input id={id} name={id} type={type} required autoComplete={auto} className="input" />
         </div>
       ))}
-      <div className="space-y-1">
-        <label htmlFor="role" className="text-sm font-medium">
-          Account type
-        </label>
-        <select id="role" name="role" defaultValue="member" className="input">
-          <option value="member">Member (register for workshops)</option>
-          <option value="admin">Admin (manage workshops)</option>
-        </select>
-      </div>
       <button type="submit" className="btn-primary w-full" disabled={loading}>
         {loading ? "Creating account…" : "Sign up"}
       </button>
