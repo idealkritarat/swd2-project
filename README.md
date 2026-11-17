@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Workshop Hub
 
-## Getting Started
+Frontend for the **Workshop Registration System** (Project 3, Software Development Practice II, 2110507).
+Visitors can browse and search workshops. Members register for them and manage their own registrations.
+Admins manage workshops and any member's registrations.
 
-First, run the development server:
+- Live demo: _added after the Vercel deploy_
+- Backend: [SWDevPrac2-69-1/PJ03-WorkshopRegist](https://github.com/SWDevPrac2-69-1/PJ03-WorkshopRegist)
+- Team Yoyo: Kritarat Moonmanee ([@idealkritarat](https://github.com/idealkritarat)) and Piranat Wadlom ([@piranatw](https://github.com/piranatw))
+
+## Features
+
+| Requirement | Where |
+|---|---|
+| Register, log in, log out, two roles (admin, member) | `/register`, `/login`, navbar, NextAuth credentials provider |
+| Anyone can view workshops | `/` and `/workshops/[id]` |
+| Search by name, description, instructor or location | search bar on `/`, calls `GET /workshops?search=` |
+| Admin adds, edits, deletes workshops | `/admin/workshops` |
+| Member registers for a workshop | "Register for this workshop" on `/workshops/[id]` |
+| Member views, changes, cancels own registration; admin does it for anyone | `/registrations` |
+| Rules (capacity, one per workshop, max 3 active, no past dates) | enforced by the backend, shown to the user with the backend's own message; the UI also hides registration for past workshops and blocks past dates in the admin form |
+
+Extras: route protection with middleware, role-aware navigation, loading, error and not-found screens, form validation, keyboard and screen reader support (labels, `aria-live`, `role=alert`), responsive layout, and 19 automated tests.
+
+## Tech stack
+
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · NextAuth v4 (credentials, JWT sessions) · Jest and Testing Library.
+
+## Run it locally
+
+1. Start the backend from `PJ03-WorkshopRegist` (needs a MongoDB URI in `config/config.env`, serves on port 5000).
+2. Copy the env file and edit the values:
 
 ```bash
+cp .env.example .env.local
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Variable | Meaning |
+|---|---|
+| `NEXT_PUBLIC_API_URL` | Backend base URL, for example `http://localhost:5000/api/v1` |
+| `NEXTAUTH_URL` | Public URL of this app |
+| `NEXTAUTH_SECRET` | Long random string used to sign sessions |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Development server on port 3000 |
+| `npm run build` / `npm start` | Production build and server |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript check |
+| `npm test` | Jest test suite |
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/            routes (home, workshops/[id], login, register, registrations, admin/workshops)
+  components/     Navbar, WorkshopCard, SearchBar, RegisterButton, Providers
+  lib/            api.ts (backend client), auth.ts (NextAuth), format.ts (dates)
+  types/          shared TypeScript types
+  proxy.ts        protects /registrations and /admin
+__tests__/        unit and component tests
+docs/             UI flow, work split, API integration, testing
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [UI flow design](docs/ui-flow.md)
+- [Work split](docs/work-split.md)
+- [API integration](docs/api-integration.md)
+- [Testing](docs/testing.md)
