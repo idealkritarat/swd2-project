@@ -5,7 +5,7 @@ Visitors can browse and search workshops. Members register for them and manage t
 Admins manage workshops and any member's registrations.
 
 - Live demo: [swd2-project.vercel.app](https://swd2-project.vercel.app)
-- Backend: [SWDevPrac2-69-1/PJ03-WorkshopRegist](https://github.com/SWDevPrac2-69-1/PJ03-WorkshopRegist), deployed from our copy [idealkritarat/swd2-project-api](https://github.com/idealkritarat/swd2-project-api) at https://swd2-project-api.vercel.app (API docs at `/api-docs`)
+- Backend: [SWDevPrac2-69-1/PJ03-WorkshopRegist](https://github.com/SWDevPrac2-69-1/PJ03-WorkshopRegist), deployed from our fork [idealkritarat/PJ03-WorkshopRegist](https://github.com/idealkritarat/PJ03-WorkshopRegist) at https://swd2-project-api.vercel.app (API docs at `/api-docs`)
 - UI flow design: [FigJam board](https://www.figma.com/board/TRanVeLfSBu3qw5tIWRsZA)
 - Team Yoyo: Kritarat Moonmanee ([@idealkritarat](https://github.com/idealkritarat)) and Piranat Wadlom ([@piranatw](https://github.com/piranatw))
 
