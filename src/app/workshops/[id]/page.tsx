@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import RegisterButton from "@/components/RegisterButton";
 import { ApiError, workshopApi } from "@/lib/api";
 import DateTile from "@/components/DateTile";
@@ -25,9 +24,6 @@ export default async function WorkshopDetail({
 
   return (
     <div className="space-y-6">
-      <Link href="/" className="inline-flex min-h-11 items-center text-sm font-semibold text-accent hover:underline">
-        ← All workshops
-      </Link>
       <article className="card space-y-5">
         <header className="flex gap-4">
           <DateTile iso={workshop.workshopDate} muted={past} />

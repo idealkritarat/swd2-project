@@ -40,11 +40,8 @@ export default function Navbar() {
         <div className="ml-auto flex items-center gap-2">
           {status === "loading" ? null : user ? (
             <>
-              <span className="hidden text-sm text-muted sm:inline">
-                {user.name}
-                <span className="ml-2 rounded-md bg-canvas px-2 py-0.5 text-xs font-semibold uppercase text-muted">
-                  {user.role}
-                </span>
+              <span className="hidden rounded-md bg-accent-soft px-2 py-0.5 text-xs font-semibold uppercase text-accent sm:inline">
+                {user.role}
               </span>
               <button className="btn-secondary" onClick={() => signOut({ callbackUrl: "/" })}>
                 Log out
